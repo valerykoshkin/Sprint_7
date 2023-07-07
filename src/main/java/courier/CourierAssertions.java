@@ -15,13 +15,13 @@ public class CourierAssertions {
                 .body("ok", equalTo(true));
     }
 
-    public int loggedInSuccessfully(ValidatableResponse response) {
+    public String loggedInSuccessfully(ValidatableResponse response) {
         return response
                 .assertThat()
                 .statusCode(HTTP_OK)
                 .body("id", notNullValue())
                 .extract()
-                .path("id");
+                .path("id").toString();
     }
 
     public void createdUnsuccesfullyDouble(ValidatableResponse response) {

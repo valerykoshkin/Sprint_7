@@ -9,6 +9,7 @@ import io.restassured.RestAssured;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import static java.lang.Integer.parseInt;
 
 public class AuthorizationCourierTests {
     String courierId;
@@ -28,8 +29,8 @@ public class AuthorizationCourierTests {
         var courier = generator.random();
         check.createdSuccessfully(client.createCourier(courier));
         Credentials creds = Credentials.from(courier);
-        int courierId = check.loggedInSuccessfully(client.logIn(creds));
-        assert courierId != 0;
+        courierId = check.loggedInSuccessfully(client.logIn(creds));
+        assert parseInt(courierId) != 0;
     }
 
     @Test
